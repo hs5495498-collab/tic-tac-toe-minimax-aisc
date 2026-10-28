@@ -1,0 +1,39 @@
+# Python virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Python bytecode / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# pytest
+.pytest_cache/
+
+# Environment variables / secrets (never commit real values)
+.env
+.env.*
+!.env.example
+
+# Coverage / test artifacts
+.coverage
+.coverage.*
+htmlcov/
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS junk
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+
+# Flask instance folder (if ever used for local config)
+instance/

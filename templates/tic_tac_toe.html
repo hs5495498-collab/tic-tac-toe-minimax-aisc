@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tic-Tac-Toe: Minimax &amp; Alpha-Beta</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='tic_tac_toe.css') }}">
+</head>
+<body>
+<header>
+  <h1>Tic-Tac-Toe &mdash; Minimax &amp; Alpha-Beta Pruning</h1>
+  <p class="subtitle">Play against a real recursive Minimax / Alpha-Beta search for the AI's moves.</p>
+  <p class="subtitle"><a href="/">&larr; Back to the original Minimax demo</a></p>
+</header>
+
+<main>
+  <section class="panel setup-panel">
+    <h2>New Game</h2>
+    <div class="control-row">
+      <fieldset>
+        <legend>Your symbol</legend>
+        <label><input type="radio" name="ttt-symbol" value="X" checked> X (goes first by default)</label>
+        <label><input type="radio" name="ttt-symbol" value="O"> O</label>
+      </fieldset>
+      <fieldset>
+        <legend>Who starts?</legend>
+        <label><input type="radio" name="ttt-first" value="human" checked> Human</label>
+        <label><input type="radio" name="ttt-first" value="ai"> AI</label>
+      </fieldset>
+      <fieldset>
+        <legend>AI algorithm</legend>
+        <label><input type="radio" name="ttt-algo" value="minimax"> Minimax</label>
+        <label><input type="radio" name="ttt-algo" value="alphabeta" checked> Alpha-Beta Pruning</label>
+      </fieldset>
+      <fieldset>
+        <legend>Move ordering (Alpha-Beta only)</legend>
+        <label><input type="checkbox" id="ttt-move-ordering" checked> Try center/corners first</label>
+      </fieldset>
+    </div>
+    <div class="control-row">
+      <button id="ttt-new-game" class="btn btn-primary">New Game</button>
+      <button id="ttt-restart" class="btn btn-secondary">Restart Board</button>
+      <span id="ttt-status" class="status-pill">Set up a game to begin</span>
+    </div>
+  </section>
+
+  <section class="panel game-panel">
+    <h2>Board</h2>
+    <div id="ttt-board" class="ttt-board" aria-label="Tic-tac-toe board">
+      <button class="ttt-cell" data-pos="0"></button>
+      <button class="ttt-cell" data-pos="1"></button>
+      <button class="ttt-cell" data-pos="2"></button>
+      <button class="ttt-cell" data-pos="3"></button>
+      <button class="ttt-cell" data-pos="4"></button>
+      <button class="ttt-cell" data-pos="5"></button>
+      <button class="ttt-cell" data-pos="6"></button>
+      <button class="ttt-cell" data-pos="7"></button>
+      <button class="ttt-cell" data-pos="8"></button>
+    </div>
+  </section>
+
+  <section class="panel stats-panel">
+    <h2>Last AI Search</h2>
+    <p class="hint">Real stats from the actual Minimax / Alpha-Beta search that picked the AI's last move - no step-by-step replay, just the final numbers.</p>
+    <div class="stats">
+      <div class="stat-card"><div class="stat-label">Algorithm</div><div class="stat-value" id="ttt-stat-algo">&mdash;</div></div>
+      <div class="stat-card"><div class="stat-label">Value</div><div class="stat-value" id="ttt-stat-value">&mdash;</div></div>
+      <div class="stat-card"><div class="stat-label">Nodes Visited</div><div class="stat-value" id="ttt-stat-nodes">&mdash;</div></div>
+      <div class="stat-card"><div class="stat-label">Terminal States</div><div class="stat-value" id="ttt-stat-terminal">&mdash;</div></div>
+      <div class="stat-card"><div class="stat-label">Pruned Branches</div><div class="stat-value" id="ttt-stat-pruned">&mdash;</div></div>
+      <div class="stat-card"><div class="stat-label">Selected Move</div><div class="stat-value" id="ttt-stat-move">&mdash;</div></div>
+      <div class="stat-card"><div class="stat-label">Search Time</div><div class="stat-value" id="ttt-stat-time">&mdash;</div></div>
+    </div>
+  </section>
+
+  <section class="panel compare-panel">
+    <h2>Compare Minimax vs. Alpha-Beta</h2>
+    <p class="hint">Runs both algorithms (and Alpha-Beta without move ordering) on the current board, without making a move.</p>
+    <button id="ttt-compare" class="btn btn-primary">Compare Algorithms Now</button>
+    <div id="ttt-compare-results" class="compare-results hidden"></div>
+  </section>
+</main>
+
+<footer>
+  <p>AI evaluation: AI win = +1, draw = 0, AI loss = -1. Same evaluation function used by both algorithms &mdash; see <code>tic_tac_toe.py</code>.</p>
+</footer>
+
+<script src="{{ url_for('static', filename='tic_tac_toe.js') }}"></script>
+</body>
+</html>

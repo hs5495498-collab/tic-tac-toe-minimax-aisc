@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minimax &amp; Alpha-Beta Pruning Visualizer</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+  <h1>Minimax &amp; Alpha-Beta Pruning</h1>
+  <p class="subtitle">A live visualization of the real Python algorithms in <code>minimax.py</code></p>
+  <p class="subtitle"><a href="/tic-tac-toe">&rarr; Play the Tic-Tac-Toe demo</a></p>
+</header>
+
+<main>
+  <section class="controls">
+    <div class="control-row">
+      <button id="btn-minimax" class="btn btn-primary">Run Minimax</button>
+      <button id="btn-alphabeta" class="btn btn-primary">Run Alpha-Beta</button>
+      <button id="btn-step" class="btn">Step Forward</button>
+      <button id="btn-play" class="btn">Play</button>
+      <button id="btn-reset" class="btn btn-secondary">Reset</button>
+    </div>
+    <div class="control-row">
+      <label for="speed">Speed:</label>
+      <select id="speed">
+        <option value="1200">Slow</option>
+        <option value="700" selected>Normal</option>
+        <option value="300">Fast</option>
+        <option value="100">Very Fast</option>
+      </select>
+      <span id="status-pill" class="status-pill">Idle</span>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat-card">
+      <div class="stat-label">Algorithm</div>
+      <div class="stat-value" id="stat-algo">&mdash;</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Current Node</div>
+      <div class="stat-value" id="stat-current">&mdash;</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Value / &alpha;,&beta;</div>
+      <div class="stat-value" id="stat-value">&mdash;</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Nodes Visited</div>
+      <div class="stat-value" id="stat-nodes">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Root Value</div>
+      <div class="stat-value" id="stat-root">&mdash;</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Nodes Saved</div>
+      <div class="stat-value" id="stat-saved">&mdash;</div>
+    </div>
+  </section>
+
+  <section class="tree-wrap">
+    <svg id="edges"></svg>
+    <div id="tree"></div>
+  </section>
+
+  <section class="log-wrap">
+    <h2>Event Log</h2>
+    <div id="log"></div>
+  </section>
+</main>
+
+<footer>
+  <p>Tree: <code>[[[3, 5], [6, 9]], [[1, 2], [0, -1]]]</code> &mdash; served live from the Python backend.</p>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
